@@ -10,7 +10,17 @@
 <body>
 <main>
     <div class="container">
-
+        <section class="search">
+            <h1 class="search__title">Find repositories</h1>
+            <form class="search__form" id="search-form">
+                <label for="repos-name" class="search__label">Repository name</label>
+                <div class="search__box">
+                    <input type="text" id="repos-name" name="repos-name" class="search__input"/>
+                    <div class="search__error" id="repos-name-error">Field is required!</div>
+                </div>
+                <button type="submit" class="search__btn-submit" id="btn-submit" disabled>Search</button>
+            </form>
+        </section>
     </div>
 </main>
 </body>
