@@ -1,3 +1,5 @@
+import { fetchRepos } from "./fetch-repos";
+
 const searchForm = document.getElementById('search-form');
 const inputReposName = document.getElementById('repos-name');
 const inputReposNameError = document.getElementById('repos-name-error');
@@ -28,12 +30,15 @@ inputReposName.addEventListener('blur', (event) => {
 });
 
 inputReposName.addEventListener('keydown', (event) => {
-
+  if(event.key === 'Enter' && inputReposName.value.replace(/\s/g, '').length !== 0) {
+    fetchRepos(inputReposName.value).catch(e => console.error(e));
+  }
 });
 
 searchForm.addEventListener('submit', (event) => {
   event.preventDefault();
 
+  fetchRepos(inputReposName.value).catch(e => console.error(e));
 });
 
 
