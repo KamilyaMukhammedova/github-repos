@@ -18,15 +18,20 @@
                     <input type="text" id="repos-name" name="repos-name" class="search__input"/>
                     <div class="search__error" id="repos-name-error">Field is required!</div>
                 </div>
-                <button type="submit" class="search__btn-submit" id="btn-submit" disabled>Search</button>
+                <button type="submit" id="btn-submit" class="search__btn-submit" disabled>Search</button>
             </form>
         </section>
-        <section class="repositories" id="repositories"></section>
         <div class="preloader" id="preloader">
-            <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
         <div class="error-msg" id="error-msg"></div>
         <div class="no-results" id="no-results">No results</div>
+        <section class="repositories" id="repositories"></section>
     </div>
 </main>
 </body>

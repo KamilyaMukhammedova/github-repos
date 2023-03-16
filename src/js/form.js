@@ -31,14 +31,13 @@ inputReposName.addEventListener('blur', (event) => {
 
 inputReposName.addEventListener('keydown', (event) => {
   if(event.key === 'Enter' && inputReposName.value.replace(/\s/g, '').length !== 0) {
-    fetchRepos(inputReposName.value).catch(e => console.error(e));
+    void fetchRepos(inputReposName.value);
   }
 });
 
 searchForm.addEventListener('submit', (event) => {
   event.preventDefault();
-
-  fetchRepos(inputReposName.value).catch(e => console.error(e));
+  void fetchRepos(inputReposName.value);
 });
 
 

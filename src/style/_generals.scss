@@ -14,19 +14,25 @@ body {
 .container {
   margin: 0 auto;
   max-width: 1200px;
-  padding: 0 15px;
+  padding: 0 25px;
 }
 
-.error-msg {
+.error-msg,
+.no-results {
   display: none;
-  background-color: $red;
   text-align: center;
   margin: 20px 0;
   padding: 20px;
   border-radius: 5px;
 }
 
+.error-msg {
+  background-color: $red;
+}
+
 .no-results {
-  display: none;
+  background-color: $lightGrey;
+  font-size: 20px;
+  color: $dark;
 }
 

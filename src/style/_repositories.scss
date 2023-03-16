@@ -1,3 +1,39 @@
 .repositories {
+  &__card {
+    background-color: $darkGrey;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 50%;
+  }
 
+  &__link {
+    cursor: pointer;
+    color: inherit;
+  }
+
+  &__description {
+    color: $lightGrey;
+  }
+
+  &__info {
+    font-size: 12px;
+    margin-right: 10px;
+  }
+
+  &__owner-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  &__owner-avatar {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+  }
+
+  &__owner-login {
+    margin-left: 10px;
+  }
 }

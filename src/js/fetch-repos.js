@@ -1,16 +1,26 @@
-import { Octokit } from "octokit";
+import {Octokit} from "octokit";
 
 const octokit = new Octokit({});
 const errorMsg = document.getElementById('error-msg');
 const btnSubmit = document.getElementById('btn-submit');
 const preloader = document.getElementById('preloader');
+const repositoriesBlock = document.getElementById('repositories');
+const noResults = document.getElementById('no-results');
+
+function onResponseError() {
+  localStorage.setItem('repos', JSON.stringify([]));
+  preloader.style.display = 'none';
+  repositoriesBlock.innerHTML = '';
+  errorMsg.style.display = 'block';
+}
 
 export async function fetchRepos(value) {
   try {
     errorMsg.textContent = '';
     errorMsg.style.display = 'none';
-    btnSubmit.disabled = true;
+    noResults.style.display = 'none';
     preloader.style.display = 'block';
+    btnSubmit.disabled = true;
 
     const result = await octokit.request(`GET /search/repositories?q=${value}`, {
       headers: {
@@ -22,21 +32,26 @@ export async function fetchRepos(value) {
 
     const repositories = result.data.items;
 
-    if(repositories.length > 0) {
-      localStorage.setItem('repos', JSON.stringify(result.data.items));
+    if (repositories.length > 0) {
+      localStorage.setItem('repos', JSON.stringify(repositories));
+      window.location.reload();
+    } else {
+      localStorage.setItem('repos', JSON.stringify([]));
+      preloader.style.display = 'none';
+      repositoriesBlock.innerHTML = '';
+      noResults.style.display = 'block';
     }
-
-    btnSubmit.disabled = false;
-    preloader.style.display = 'none';
-    console.log(result.data);
   } catch (error) {
+    onResponseError();
+
     if (error.response) {
-      const info = `Error! Status: ${error.response.status}. Message: ${error.response.data.message}`;
-      errorMsg.textContent = info;
-      errorMsg.style.display = 'block';
-      console.error(info);
+      const errorInfo = `Error! Status: ${error.response.status}. Message: ${error.response.data.message}`;
+      errorMsg.textContent = errorInfo;
+      console.error(errorInfo);
+    } else {
+      errorMsg.textContent = 'Error! Try again.';
+      console.error(error);
     }
-    console.error(error);
-    preloader.style.display = 'none';
   }
 }
+
